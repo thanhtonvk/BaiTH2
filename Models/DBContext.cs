@@ -13,6 +13,9 @@ namespace BaiTH2.Models
         }
 
         public virtual DbSet<DanhMuc> DanhMucs { get; set; }
+        public virtual DbSet<GiaBan> GiaBans { get; set; }
+        public virtual DbSet<HangHoa> HangHoas { get; set; }
+        public virtual DbSet<LoaiHang> LoaiHangs { get; set; }
         public virtual DbSet<NhanVien> NhanViens { get; set; }
         public virtual DbSet<Sach> Saches { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
@@ -24,6 +27,16 @@ namespace BaiTH2.Models
             modelBuilder.Entity<DanhMuc>()
                 .HasMany(e => e.SanPhams)
                 .WithRequired(e => e.DanhMuc)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<HangHoa>()
+                .HasMany(e => e.GiaBans)
+                .WithRequired(e => e.HangHoa)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<LoaiHang>()
+                .HasMany(e => e.HangHoas)
+                .WithRequired(e => e.LoaiHang)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<NhanVien>()

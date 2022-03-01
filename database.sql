@@ -50,3 +50,27 @@ create table SanPham
     DonGia int,
     MaDanhMuc int not null constraint  fk_1 foreign key(MaDanhMuc) references DanhMuc(MaDanhMuc)
 )
+go
+create table LoaiHang(
+    MaLoai int identity(1,1) primary key,
+    TenLoai nvarchar(100) not null,
+    MoTa nvarchar(100)
+)
+go
+create table HangHoa(
+    MaHang int identity(1,1) primary key,
+    MaLoai int not null constraint fk_2 foreign key(MaLoai) references LoaiHang(MaLoai),
+    TenHang nvarchar(50),
+    SoLuong int,
+    SoLuongCon int default 1,
+)
+go
+create table GiaBan(
+    MaGB int identity(1,1) primary key,
+    MaHang int not null constraint fk_3 foreign key(MaHang) references HangHoa(MaHang),
+    Gia int default 0,
+    DVTinh nvarchar(30),
+    NgayDB date default getdate(),
+    NgayKT date default getdate()+10,
+
+)

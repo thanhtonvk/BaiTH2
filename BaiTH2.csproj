@@ -171,6 +171,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\DanhMucController.cs" />
+    <Compile Include="Controllers\HangHoaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NhanVienController.cs" />
     <Compile Include="Controllers\SachController.cs" />
@@ -182,6 +183,9 @@
     </Compile>
     <Compile Include="Models\DanhMuc.cs" />
     <Compile Include="Models\DBContext.cs" />
+    <Compile Include="Models\GiaBan.cs" />
+    <Compile Include="Models\HangHoa.cs" />
+    <Compile Include="Models\LoaiHang.cs" />
     <Compile Include="Models\NhanVien.cs" />
     <Compile Include="Models\Sach.cs" />
     <Compile Include="Models\SanPham.cs" />

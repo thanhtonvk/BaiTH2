@@ -39,7 +39,7 @@ namespace BaiTH2.Controllers
         [Route("api/sach/getsachbynxb")]
         public IHttpActionResult GetSachByNXB(string NXB)
         {
-            var model = db.Saches.Where(x => x.TacGia == NXB);
+            var model = db.Saches.Where(x => x.NhaXB == NXB);
             if (model.Any())
             {
                 return Ok(model);
