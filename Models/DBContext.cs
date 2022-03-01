@@ -12,13 +12,20 @@ namespace BaiTH2.Models
         {
         }
 
+        public virtual DbSet<DanhMuc> DanhMucs { get; set; }
         public virtual DbSet<NhanVien> NhanViens { get; set; }
         public virtual DbSet<Sach> Saches { get; set; }
+        public virtual DbSet<SanPham> SanPhams { get; set; }
         public virtual DbSet<SinhVien> SinhViens { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<DanhMuc>()
+                .HasMany(e => e.SanPhams)
+                .WithRequired(e => e.DanhMuc)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<NhanVien>()
                 .Property(e => e.MaNV)
                 .IsUnicode(false);
