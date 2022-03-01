@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BaiTH2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,5 +10,57 @@ namespace BaiTH2.Controllers
 {
     public class SanPhamController : ApiController
     {
+        DBContext db = new DBContext();
+        public IQueryable<SanPham> GetSanPham()
+        {
+            return db.SanPhams;
+        }
+        public IHttpActionResult GetSanPham(int ID)
+        {
+            var model = db.SanPhams.Find(ID);
+            if (model == null) return BadRequest("Khong tim thay");
+            return Ok(model);
+        }
+        public IHttpActionResult PostSanPham([FromBody] SanPham sanPham)
+        {
+            db.SanPhams.Add(sanPham);
+            if (db.SaveChanges()>0)
+            {
+                return Ok("Thanh cong");
+            }
+            return BadRequest("Loi");
+        }
+        public IHttpActionResult PutSanPham([FromBody] SanPham sanPham)
+        {
+            if (IsExist(sanPham.Ma))
+            {
+                db.SanPhams.Add(sanPham);
+                db.Entry(sanPham).State = System.Data.Entity.EntityState.Modified;
+                if (db.SaveChanges() > 0)
+                {
+                    return Ok("Thanh cong");
+                }
+                return BadRequest("Loi");
+            }
+            return BadRequest("Khong ton tai");
+        }
+        public IHttpActionResult DeleteSanPham(int ID)
+        {
+            var model = db.SanPhams.Find(ID);
+            if (model == null) return BadRequest("Khong ton tai");
+            else
+            {
+                db.SanPhams.Remove(model);
+                db.SaveChanges();
+                return Ok("Thanh cong");
+            }
+        }
+        public bool IsExist(int ID)
+        {
+            var model = db.SanPhams.Find(ID);
+            if (model == null) return false;
+            return true;
+        }
+
     }
 }
