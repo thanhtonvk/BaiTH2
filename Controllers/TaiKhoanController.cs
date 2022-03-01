@@ -12,12 +12,14 @@ namespace BaiTH2.Controllers
     public class TaiKhoanController : ApiController
     {
         private DBContext db = new DBContext();
-
+        [HttpGet]
+        [Route("api/taikhoan/gettaikhoans")]
         public IQueryable<TaiKhoan> GetTaiKhoan()
         {
             return db.TaiKhoans;
         }
-
+        [HttpGet]
+        [Route("api/taikhoan/GetTaiKhoan")]
         public IHttpActionResult GetTaiKhoan(string TenTK)
         {
             var model = db.TaiKhoans.Find(TenTK);
@@ -28,7 +30,8 @@ namespace BaiTH2.Controllers
 
             return null;
         }
-
+        [HttpPost]
+        [Route("api/taikhoan/posttaikhoan")]
         public IHttpActionResult PostTaiKhoan([FromBody] TaiKhoan taiKhoan)
         {
             db.TaiKhoans.Add(taiKhoan);
@@ -39,7 +42,8 @@ namespace BaiTH2.Controllers
 
             return NotFound();
         }
-
+        [HttpPut]
+        [Route("api/taikhoan/puttaikhoan")]
         public IHttpActionResult PutTaiKhoan([FromBody] TaiKhoan taiKhoan)
         {
             if (IsExists(taiKhoan.TenTK))
@@ -52,7 +56,8 @@ namespace BaiTH2.Controllers
 
             return BadRequest("Tai khoan khong ton tai");
         }
-
+        [HttpDelete]
+        [Route("api/taikhoan/deletetaikhoan")]
         public IHttpActionResult DeleteTaiKhoan(string TenTK)
         {
             if (IsExists(TenTK))

@@ -15,7 +15,8 @@ namespace BaiTH2.Controllers
     public class DanhMucController : ApiController
     {
         private DBContext db = new DBContext();
-
+        [HttpGet]
+        [Route("api/danhmuc/GetDanhMucs")]
         // GET: api/DanhMuc
         public IQueryable<DanhMuc> GetDanhMucs()
         {
@@ -23,6 +24,8 @@ namespace BaiTH2.Controllers
         }
 
         // GET: api/DanhMuc/5
+        [HttpGet]
+        [Route("api/danhmuc/GetDanhMuc")]
         [ResponseType(typeof(DanhMuc))]
         public IHttpActionResult GetDanhMuc(int id)
         {
@@ -34,7 +37,8 @@ namespace BaiTH2.Controllers
 
             return Ok(danhMuc);
         }
-
+        [HttpPut]
+        [Route("api/danhmuc/PutDanhMuc")]
         // PUT: api/DanhMuc/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutDanhMuc(int id, DanhMuc danhMuc)
@@ -69,7 +73,8 @@ namespace BaiTH2.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
+        [HttpPost]
+        [Route("api/danhmuc/PostDanhMuc")]
         // POST: api/DanhMuc
         [ResponseType(typeof(DanhMuc))]
         public IHttpActionResult PostDanhMuc(DanhMuc danhMuc)
@@ -84,7 +89,8 @@ namespace BaiTH2.Controllers
 
             return CreatedAtRoute("DefaultApi", new { id = danhMuc.MaDanhMuc }, danhMuc);
         }
-
+        [HttpDelete]
+        [Route("api/danhmuc/DeleteDanhMuc")]
         // DELETE: api/DanhMuc/5
         [ResponseType(typeof(DanhMuc))]
         public IHttpActionResult DeleteDanhMuc(int id)

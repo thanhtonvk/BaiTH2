@@ -11,16 +11,22 @@ namespace BaiTH2.Controllers
     public class SanPhamController : ApiController
     {
         DBContext db = new DBContext();
+        [HttpGet]
+        [Route("api/sanpham/getsanphams")]
         public IQueryable<SanPham> GetSanPham()
         {
             return db.SanPhams;
         }
+        [HttpGet]
+        [Route("api/sanpham/GetSanPham")]
         public IHttpActionResult GetSanPham(int ID)
         {
             var model = db.SanPhams.Find(ID);
             if (model == null) return BadRequest("Khong tim thay");
             return Ok(model);
         }
+        [HttpPost]
+        [Route("api/sanpham/postsanpham")]
         public IHttpActionResult PostSanPham([FromBody] SanPham sanPham)
         {
             db.SanPhams.Add(sanPham);
@@ -30,6 +36,8 @@ namespace BaiTH2.Controllers
             }
             return BadRequest("Loi");
         }
+        [HttpPut]
+        [Route("api/sanpham/putsanpham")]
         public IHttpActionResult PutSanPham([FromBody] SanPham sanPham)
         {
             if (IsExist(sanPham.Ma))
@@ -44,6 +52,8 @@ namespace BaiTH2.Controllers
             }
             return BadRequest("Khong ton tai");
         }
+        [HttpDelete]
+        [Route("api/sanpham/DeleteSanPham")]
         public IHttpActionResult DeleteSanPham(int ID)
         {
             var model = db.SanPhams.Find(ID);

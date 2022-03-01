@@ -28,10 +28,10 @@ namespace BaiTH2.Controllers
         public IHttpActionResult GetSVByYear()
         {
             var year = DateTime.Now.Year;
-            return Ok(db.SinhViens.Where(x => year - getYear(x.NgaySinh.ToString()) > 20));
+            return Ok(db.SinhViens.Where(x => year - Year(x.NgaySinh.ToString()) > 20));
         }
 
-        private int getYear(string ngaysinh)
+        private int Year(string ngaysinh)
         {
             return int.Parse(ngaysinh.Split('-')[0]);
         }

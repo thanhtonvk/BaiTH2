@@ -49,7 +49,7 @@ namespace BaiTH2.Controllers
         }
 
         [HttpGet]
-        [Route("api/sach/getsachbynxb")]
+        [Route("api/sach/getsachbyyear")]
         public IHttpActionResult GetSachByYear()
         {
             var yearnow = DateTime.Now.Year;
